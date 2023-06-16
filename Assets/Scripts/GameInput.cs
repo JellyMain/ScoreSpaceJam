@@ -12,7 +12,7 @@ public class GameInput : MonoBehaviour
         gameInputActions = new GameInputActions();
         gameInputActions.Player.Enable();
     }
-
+    //sadfasdf
 
     private void Update()
     {
