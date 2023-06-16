@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+
+    public Action OnDash;
     private GameInputActions gameInputActions;
 
 
@@ -14,9 +18,21 @@ public class GameInput : MonoBehaviour
     }
 
 
+    private void OnEnable()
+    {
+        gameInputActions.Player.Dash.performed += Dash;
+    }
+
+
+    private void Dash(InputAction.CallbackContext obj)
+    {
+        OnDash?.Invoke();
+    }
+
+
     private void Update()
     {
-        Debug.Log(GetMovementInput());
+        // Debug.Log(GetMovementInput());
     }
 
     public Vector2 GetMovementInput()

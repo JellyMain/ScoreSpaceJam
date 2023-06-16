@@ -22,6 +22,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+
+
     //plays needed sound
     private void PlaySound(AudioClip clip, Vector2 position, float volume)
     {
@@ -40,4 +42,7 @@ public class SoundManager : MonoBehaviour
     {
         PlaySound(soundPackSO.exampleSound, new Vector2(0, 0), 1);
     }
+
+
+
 }
