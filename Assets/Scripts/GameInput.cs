@@ -16,7 +16,7 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(GetMovementInput());
+        //Debug.Log(GetMovementInput());
     }
 
     public Vector2 GetMovementInput()
