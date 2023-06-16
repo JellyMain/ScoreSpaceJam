@@ -9,6 +9,7 @@ public class SimpleEnemy : Enemy, IMove, IShot, IDead
 
     public void Dead()
     {
+        OnDead.Invoke();
         throw new System.NotImplementedException();
     }
 
@@ -27,6 +28,11 @@ public class SimpleEnemy : Enemy, IMove, IShot, IDead
     {
         base.Start();
         SetInterfaces(this, this, this);
+    }
+
+    private void PlaySoundDead()
+    {
+
     }
 
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +8,28 @@ public class Enemy : MonoBehaviour
     public IMove move;
     public IShot shot;
     public IDead dead;
+    public Action OnDead;
+    public Action OnShot;
 
-    protected Rigidbody2D _rigibody2D;
-    protected SpriteRenderer _spriteRenderer;
+    public Rigidbody2D _rigibody2D;
+    public SpriteRenderer _spriteRenderer;
+
     public void Start()
     {
         _rigibody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-   
+
+    private void OnEnable()
+    {
+        OnDead += SoundManager.Instance.PlaySomeSound;
+    }
+
+    private void OnDisable()
+    {
+        OnDead -= SoundManager.Instance.PlaySomeSound;
+    }
+
     private void FixedUpdate()
     {
         EnemyMove();
@@ -33,6 +47,7 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDead()
     {
+        OnDead.Invoke();
         dead?.Dead();
     }
 
@@ -40,12 +55,6 @@ public class Enemy : MonoBehaviour
     {
         this.move = move;
         this.dead = dead;
-    }
-
-    public void SetInterfaces(IShot shot, IDead dead)
-    {
-        this.shot = shot;
-        this.dead = dead;   
     }
 
     public void SetInterfaces(IMove move, IShot shot, IDead dead)
