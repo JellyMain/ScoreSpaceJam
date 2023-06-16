@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182cd195a28310e479cddf7ff82822f8, type: 3}
   m_Name: LootLockerConfig
   m_EditorClassIdentifier: 
-  apiKey: 
+  apiKey: dev_969719c4e2724884bc34d1d5c12182c2
   token: 
   adminToken: 
   refreshToken: 
-  domainKey: 
+  domainKey: 92h9o9mc
   gameID: 0
   game_version: 1.0.0.0
   deviceID: defaultPlayerId
