@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] GameInput gameInput;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float moveSpeed;
+    [SerializeField] float roationSpeed;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration = 1f;
     [SerializeField] float dashCooldown = 2f;
 
-    private bool isDashing = false;
+
+    public bool isDashing = false;
     private bool canDash = true;
+
+
+    public static Player Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
 
     private void OnEnable()
@@ -31,7 +45,6 @@ public class Player : MonoBehaviour
     {
         HandleMovement();
     }
-
 
 
     private void StartDash()
@@ -59,6 +72,19 @@ public class Player : MonoBehaviour
     private void HandleMovement()
     {
         if (isDashing) return;
-        rb.velocity = gameInput.GetMovementInput() * moveSpeed;
+
+        Vector2 direction = gameInput.GetMovementInput();
+
+
+        rb.velocity = direction * moveSpeed;
+
+        transform.up = Vector2.Lerp(transform.up, direction, roationSpeed * Time.deltaTime);
     }
+
+
+    private bool isMoving()
+    {
+        return gameInput.GetMovementInput() != Vector2.zero;
+    }
+
 }
