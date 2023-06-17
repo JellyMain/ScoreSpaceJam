@@ -17,18 +17,16 @@ public class Player : MonoBehaviour
     public bool isDashing = false;
     private bool canDash = true;
 
+    public static Player Instance;
 
-    public static Player Instance { get; private set; }
+    private int _countCoin = 0;
+
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        Instance = this;
+        EventAgregator.playerAddCoin.AddListener(AddCoin);
     }
-
-
     private void OnEnable()
     {
         gameInput.OnDash += StartDash;
@@ -87,4 +85,8 @@ public class Player : MonoBehaviour
         return gameInput.GetMovementInput() != Vector2.zero;
     }
 
+    public void AddCoin()
+    {
+        _countCoin++;
+    }
 }
