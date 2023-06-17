@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
 
     private Vector2 randomCoinPosition;
 
+    public int score;
+
+    public int HP;
+    public int strength;
 
     public List<GameObject> _coins = new List<GameObject>();
     public void Start()
@@ -53,11 +57,13 @@ public class Enemy : MonoBehaviour
     {
         foreach (var coin in _coins)
         {
-            randomCoinPosition = Camera.main.ScreenToWorldPoint( new Vector2(UnityEngine.Random.Range(0, Screen.width), UnityEngine.Random.Range(0, Screen.height)));
+            randomCoinPosition = Camera.main.ScreenToWorldPoint(new Vector2(UnityEngine.Random.Range(0, Screen.width), UnityEngine.Random.Range(0, Screen.height)));
             Instantiate(coin, randomCoinPosition, Quaternion.identity);
         }
 
-        OnDead.Invoke();
+        Player.Instance.AddScore(score);
+
+        OnDead?.Invoke();
         dead?.Dead();
     }
 

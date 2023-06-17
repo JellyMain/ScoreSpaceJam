@@ -17,12 +17,20 @@ public class MelleEnemy : Enemy , IMove, IDead
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            EnemyDead();
+            //collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet);
+            //UpdateEnemyHP(bullet.strength);
+            // To do for bullet
         }
+
         if (collision.gameObject.CompareTag("Coin"))
         {
             collision.gameObject.TryGetComponent<Coin>(out Coin coin);
             coin.OnDestroy.Invoke();
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player.Instance.UpdatePlayerHP(strength);
         }
     }
 
@@ -35,5 +43,19 @@ public class MelleEnemy : Enemy , IMove, IDead
     {
         base.Start();
         SetInterfaces(this, this);
+    }
+
+    public void UpdateEnemyHP(int amount)
+    {
+        if (HP > amount)
+        {
+            HP -= amount;
+        }
+        else
+        {
+            EnemyDead();
+        }
+
+        EventAgregator.updatePlayerUI.Invoke();
     }
 }
