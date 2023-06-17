@@ -8,6 +8,7 @@ public class GameInput : MonoBehaviour
 {
 
     public Action OnDash;
+    public Action OnShoot;
     private GameInputActions gameInputActions;
 
 
@@ -21,6 +22,14 @@ public class GameInput : MonoBehaviour
     private void OnEnable()
     {
         gameInputActions.Player.Dash.performed += Dash;
+        gameInputActions.Player.Shoot.performed += Shoot;
+    }
+
+
+    private void OnDisable()
+    {
+        gameInputActions.Player.Dash.performed -= Dash;
+        gameInputActions.Player.Shoot.performed -= Shoot;
     }
 
 
@@ -30,10 +39,11 @@ public class GameInput : MonoBehaviour
     }
 
 
-    private void Update()
+    private void Shoot(InputAction.CallbackContext obj)
     {
-        // Debug.Log(GetMovementInput());
+        OnShoot?.Invoke();
     }
+
 
     public Vector2 GetMovementInput()
     {
