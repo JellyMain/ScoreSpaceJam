@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -13,29 +14,41 @@ public class Player : MonoBehaviour
     [SerializeField] float dashDuration = 1f;
     [SerializeField] float dashCooldown = 2f;
 
+    private BoxCollider2D _boxCollider2D;
+    private SpriteRenderer _spriteRenderer;
 
     public bool isDashing = false;
     private bool canDash = true;
 
     public static Player Instance;
 
-    private int _countCoin = 0;
+    public int countCoin = 0;
 
+    public int score = 0;
+
+    public int HP;
+
+    public Action OnLoose;
 
     private void Awake()
     {
         Instance = this;
         EventAgregator.playerAddCoin.AddListener(AddCoin);
+
+        _boxCollider2D = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void OnEnable()
     {
         gameInput.OnDash += StartDash;
+        OnLoose += PlayerLoose;
     }
 
 
     private void OnDisable()
     {
         gameInput.OnDash -= StartDash;
+        OnLoose -= PlayerLoose;
     }
 
 
@@ -87,6 +100,34 @@ public class Player : MonoBehaviour
 
     public void AddCoin()
     {
-        _countCoin++;
+        countCoin++;
+        EventAgregator.updatePlayerUI.Invoke();
+    }
+
+    public void AddScore(int score)
+    {
+        this.score += score;
+        EventAgregator.updatePlayerUI.Invoke();
+    }
+
+    public void UpdatePlayerHP(int amount)
+    {
+        if (HP > amount)
+        {
+            HP -= amount;
+        }
+        else
+        {
+            OnLoose?.Invoke();
+        }
+
+        EventAgregator.updatePlayerUI.Invoke();
+    }
+
+    private void PlayerLoose()
+    {
+        _spriteRenderer.color = Color.white;
+        _boxCollider2D.enabled = false;
+        Destroy(this.gameObject, 2f);
     }
 }

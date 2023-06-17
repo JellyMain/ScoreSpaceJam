@@ -6,4 +6,6 @@ using UnityEngine.Events;
 public class EventAgregator 
 {
    public static UnityEvent playerAddCoin = new UnityEvent();
+   public static UnityEvent updatePlayerUI = new UnityEvent();
+   public static UnityEvent PlayerDestroyEnemy = new UnityEvent();
 }

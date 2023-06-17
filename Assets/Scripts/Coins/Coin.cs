@@ -46,6 +46,7 @@ public class Coin : MonoBehaviour
     {
         SoundManager.Instance.PlayAddCoinSounds(this.transform.position);
         EventAgregator.playerAddCoin.Invoke();
+        OnDestroy.Invoke();
     }
 
     private void DestroyCoin()
@@ -53,7 +54,6 @@ public class Coin : MonoBehaviour
         _spriteRenderer.color = new Color(0, 0, 0);
         _circleCollider2D.enabled = false;
         Instantiate(_destroyEffect, this.transform.position, Quaternion.identity);
-        SoundManager.Instance.PlayDestroyCoinSounds(this.transform.position);
 
         Destroy(this.gameObject, 2f);
     }

@@ -48,11 +48,6 @@ public class SoundManager : MonoBehaviour
         PlaySound(soundPackSO.coinAddSound, transform, 1);
     }
 
-    public void PlayDestroyCoinSounds(Vector2 transform)
-    {
-        PlaySound(soundPackSO.coinDestroySound, transform, 1);
-    }
-
     public void PlayDestroyEnemy(Vector2 transform)
     {
         PlaySound(soundPackSO.enemyDestroySound, transform, 1);
