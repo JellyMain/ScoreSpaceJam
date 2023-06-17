@@ -28,4 +28,13 @@ public class MultishotEnemy : Enemy, IMove, IShot, IDead
         base.Start();
         SetInterfaces(this, this, this);
     }
+    private void OnEnable()
+    {
+        base.OnEnable();
+    }
+
+    private void OnDisable()
+    {
+        base.OnDisable();
+    }
 }

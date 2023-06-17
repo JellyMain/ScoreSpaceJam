@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: SoundPack
   m_EditorClassIdentifier: 
   exampleSound: {fileID: 0}
+  explosionSound: {fileID: 0}
+  coinAddSound: {fileID: 8300000, guid: 272a23617fda00548b9c0a940f423df6, type: 3}
+  coinDestroySound: {fileID: 8300000, guid: de14b38628898f44da0117e37749e68a, type: 3}
+  enemyDestroySound: {fileID: 8300000, guid: de14b38628898f44da0117e37749e68a, type: 3}

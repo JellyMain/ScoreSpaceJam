@@ -7,4 +7,7 @@ public class SoundPackSO : ScriptableObject
 {
     public AudioClip exampleSound;
     public AudioClip explosionSound;
+    public AudioClip coinAddSound;
+    public AudioClip coinDestroySound;
+    public AudioClip enemyDestroySound;
 }

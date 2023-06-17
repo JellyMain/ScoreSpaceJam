@@ -14,20 +14,24 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D _rigibody2D;
     public SpriteRenderer _spriteRenderer;
 
+    private Vector2 randomCoinPosition;
+
+
+    public List<GameObject> _coins = new List<GameObject>();
     public void Start()
     {
         _rigibody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
-        OnDead += SoundManager.Instance.PlaySomeSound;
+        OnDead += () => SoundManager.Instance.PlayDestroyEnemy(this.transform.position);
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
-        OnDead -= SoundManager.Instance.PlaySomeSound;
+        OnDead -= () => SoundManager.Instance.PlayDestroyEnemy(this.transform.position);
     }
 
     private void FixedUpdate()
@@ -47,6 +51,12 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDead()
     {
+        foreach (var coin in _coins)
+        {
+            randomCoinPosition = Camera.main.ScreenToWorldPoint( new Vector2(UnityEngine.Random.Range(0, Screen.width), UnityEngine.Random.Range(0, Screen.height)));
+            Instantiate(coin, randomCoinPosition, Quaternion.identity);
+        }
+
         OnDead.Invoke();
         dead?.Dead();
     }

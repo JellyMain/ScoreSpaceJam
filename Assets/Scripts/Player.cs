@@ -14,7 +14,16 @@ public class Player : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
+    public static Player Instance;
 
+    private int _countCoin = 0;
+
+    
+    private void Awake()
+    {
+        Instance = this;
+        EventAgregator.playerAddCoin.AddListener(AddCoin);
+    }
     private void OnEnable()
     {
         gameInput.OnDash += StartDash;
@@ -60,5 +69,10 @@ public class Player : MonoBehaviour
     {
         if (isDashing) return;
         rb.velocity = gameInput.GetMovementInput() * moveSpeed;
+    }
+
+    public void AddCoin()
+    {
+        _countCoin++;
     }
 }
