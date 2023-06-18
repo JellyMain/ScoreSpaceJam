@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventAgregator 
+public class EventAgregator
 {
-   public static UnityEvent playerAddCoin = new UnityEvent();
-   public static UnityEvent updatePlayerUI = new UnityEvent();
-   public static UnityEvent PlayerDestroyEnemy = new UnityEvent();
+    public static UnityEvent playerAddCoin = new UnityEvent();
+    public static UnityEvent updatePlayerUI = new UnityEvent();
+    public static UnityEvent PlayerDestroyEnemy = new UnityEvent();
+    public static UnityEvent<Enemy> WaveEnemyManager = new UnityEvent<Enemy>();
 }

@@ -16,11 +16,9 @@ public class PlayerUI : MonoBehaviour
     {
         EventAgregator.updatePlayerUI.AddListener(UpdateScore);
         EventAgregator.updatePlayerUI.AddListener(UpdateCoin);
-        EventAgregator.updatePlayerUI.AddListener(UpdatePlayerHP);
 
-        playerHP.text = Player.Instance.HP.ToString();
         score.text = Player.Instance.score.ToString();
-        coin.text = Player.Instance.countCoin.ToString(); 
+        coin.text = Player.Instance.countCoin.ToString();
     }
 
     private void Update()
@@ -36,11 +34,7 @@ public class PlayerUI : MonoBehaviour
 
     private void UpdateCoin()
     {
-        coin.text = Player.Instance.countCoin.ToString(); 
+        coin.text = Player.Instance.countCoin.ToString();
     }
 
-    private void UpdatePlayerHP()
-    {
-        playerHP.text = Player.Instance.HP.ToString();
-    }
 }
