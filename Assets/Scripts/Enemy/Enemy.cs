@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     public int HP;
     public int strength;
 
+    public float endReachedDistance;
+
     public List<GameObject> _coins = new List<GameObject>();
     public void Start()
     {
@@ -78,5 +80,19 @@ public class Enemy : MonoBehaviour
         this.move = move;
         this.shot = shot;
         this.dead = dead;
+    }
+
+    public void UpdateEnemyHP(int amount)
+    {
+        if (HP > amount)
+        {
+            HP -= amount;
+        }
+        else
+        {
+            EnemyDead();
+        }
+
+        EventAgregator.updatePlayerUI.Invoke();
     }
 }

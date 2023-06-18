@@ -8,7 +8,6 @@ public class Coin : MonoBehaviour
     [SerializeField] private ParticleSystem _destroyEffect;
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _circleCollider2D;
-    private Rigidbody2D _rigidbody2D;
     public Action OnDestroy;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,11 +34,9 @@ public class Coin : MonoBehaviour
 
     void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _circleCollider2D = GetComponent<CircleCollider2D>();
 
-        RandomMove();
     }
 
     private void AddCoin()
@@ -56,10 +53,5 @@ public class Coin : MonoBehaviour
         Instantiate(_destroyEffect, this.transform.position, Quaternion.identity);
 
         Destroy(this.gameObject, 2f);
-    }
-
-    private void RandomMove()
-    {
-        //_rigidbody2D.AddForce(randomPosition);
     }
 }
