@@ -34,7 +34,7 @@ Transform:
   - {fileID: 745293745791000809}
   - {fileID: 1684870397230433307}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2974175841778805192
 MonoBehaviour:
@@ -56,6 +56,9 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.4
   isDashing: 0
+  countCoin: 0
+  score: 0
+  HP: 0
 --- !u!114 &310090665147731014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +113,7 @@ GameObject:
   - component: {fileID: 2615015059092918754}
   - component: {fileID: 9079555658663173214}
   - component: {fileID: 7596423077041716509}
+  - component: {fileID: 4739556324814850277}
   m_Layer: 0
   m_Name: PlayerVisuals
   m_TagString: Untagged
@@ -152,7 +156,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,7 +178,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.17358488, g: 0.5480365, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -243,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2131171067498137017}
   playerParticles: {fileID: 3271633856793487045}
+  animator: {fileID: 4739556324814850277}
 --- !u!96 &7596423077041716509
 TrailRenderer:
   serializedVersion: 3
@@ -365,6 +370,27 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!95 &4739556324814850277
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384966792516227075}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3636916214146616565
 GameObject:
   m_ObjectHideFlags: 0

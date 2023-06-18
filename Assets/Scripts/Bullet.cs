@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     protected Rigidbody2D bulletRb;
     public float damage;
+    public float bulletSpeed;
     public GameObject bulletPrefab;
 
 
@@ -22,6 +23,6 @@ public class Bullet : MonoBehaviour
 
     public void SetBulletDirection(Vector2 direction)
     {
-        bulletRb.velocity = direction;
+        bulletRb.velocity = direction * bulletSpeed;
     }
 }

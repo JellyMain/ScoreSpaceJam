@@ -6,9 +6,9 @@ public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] GameInput gameInput;
 
-    public IShoot currentShootingPattern;
+    public Gun currentGun;
     public Bullet currentBullets;
-
+    private float fireRateTimer = float.MaxValue;
     private Vector2 aimDirection;
 
     public static PlayerShooting Instance { get; private set; }
@@ -19,40 +19,30 @@ public class PlayerShooting : MonoBehaviour
         {
             Instance = this;
         }
-        currentShootingPattern = new Pistol();
     }
-
-
 
 
     private void Update()
     {
+        fireRateTimer += Time.deltaTime;
         UpdateAimDirection();
-        Debug.Log(currentShootingPattern);
-        Debug.Log(currentBullets);
+        Shoot();
     }
 
-
-    private void OnEnable()
-    {
-        gameInput.OnShoot += Shoot;
-    }
-
-
-    private void OnDisable()
-    {
-        gameInput.OnShoot -= Shoot;
-    }
 
 
     private void Shoot()
     {
-        currentShootingPattern.Shoot(aimDirection, currentBullets);
+        if (gameInput.isShooting && fireRateTimer >= currentGun.fireRate)
+        {
+            currentGun.shootingPattern.Shoot(aimDirection, currentBullets, currentGun);
+            fireRateTimer = 0;
+        }
     }
 
     private void UpdateAimDirection()
     {
-        aimDirection = GetWorldMousePosition() - (Vector2)transform.position;
+        aimDirection = (GetWorldMousePosition() - (Vector2)transform.position).normalized;
     }
 
     private Vector2 GetWorldMousePosition()

@@ -10,6 +10,7 @@ public class GameInput : MonoBehaviour
     public Action OnDash;
     public Action OnShoot;
     private GameInputActions gameInputActions;
+    public bool isShooting;
 
 
     private void Awake()
@@ -22,14 +23,16 @@ public class GameInput : MonoBehaviour
     private void OnEnable()
     {
         gameInputActions.Player.Dash.performed += Dash;
-        gameInputActions.Player.Shoot.performed += Shoot;
+        gameInputActions.Player.Shoot.started += ctx => isShooting = true;
+        gameInputActions.Player.Shoot.canceled += ctx => isShooting = false;
     }
 
 
     private void OnDisable()
     {
         gameInputActions.Player.Dash.performed -= Dash;
-        gameInputActions.Player.Shoot.performed -= Shoot;
+        gameInputActions.Player.Shoot.started -= ctx => isShooting = true;
+        gameInputActions.Player.Shoot.canceled -= ctx => isShooting = false;
     }
 
 

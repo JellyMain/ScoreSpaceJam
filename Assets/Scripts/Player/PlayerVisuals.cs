@@ -5,8 +5,11 @@ using DG.Tweening;
 
 public class PlayerVisuals : MonoBehaviour
 {
+    private const string IS_DASHING = "isDashing";
+
     [SerializeField] Rigidbody2D rb;
     [SerializeField] ParticleSystem playerParticles;
+    [SerializeField] Animator animator;
     private TrailRenderer playerTrailRenderer;
     private Vector2 lastVelocity;
 
@@ -19,13 +22,17 @@ public class PlayerVisuals : MonoBehaviour
     private void FixedUpdate()
     {
         HandleDeformation();
-        ChangeTrailRendererState();
+        SetDashingEffects();
     }
 
 
-    private void ChangeTrailRendererState()
+    private void SetDashingEffects()
     {
         playerTrailRenderer.emitting = Player.Instance.isDashing;
+        if (Player.Instance.isDashing)
+        {
+            animator.SetTrigger(IS_DASHING);
+        }
     }
 
 
