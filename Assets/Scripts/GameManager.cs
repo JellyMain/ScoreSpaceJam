@@ -1,20 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using LootLocker.Requests;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    // private void Awake()
-    // {
-    //     LootLockerSDKManager.StartGuestSession((responce) =>
-    //     {
-    //         if (!responce.success)
-    //         {
-    //             Debug.LogError("error starting guest session");
-    //             return;
-    //         }
-    //         Debug.Log("guest session started");
-    //     });
-    // }
+    private void Start()
+    {
+        StartCoroutine(LoginRoutine());
+    }
+
+
+
+    IEnumerator LoginRoutine()
+    {
+        bool done = false;
+        LootLockerSDKManager.StartGuestSession((responce) =>
+        {
+            if (responce.success)
+            {
+                Debug.Log("player has logined");
+                PlayerPrefs.SetString("PlayerID", responce.player_id.ToString());
+                done = true;
+            }
+            else
+            {
+                Debug.Log("error while logining");
+                done = true;
+            }
+        });
+        yield return new WaitWhile(() => done == false);
+
+    }
 }

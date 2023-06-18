@@ -6,6 +6,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Leaderboard leaderboard;
     [SerializeField] GameInput gameInput;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float moveSpeed;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
     private void StartDash()
     {
         StartCoroutine(HandleDash());
+
     }
 
 
@@ -73,6 +75,9 @@ public class Player : MonoBehaviour
             isDashing = true;
             rb.velocity = gameInput.GetMovementInput() * dashSpeed;
             yield return new WaitForSeconds(dashDuration);
+            // leaderboard.StartSettingName();
+            // leaderboard.StartGettingName();
+            // yield return leaderboard.SubmitScoreRoutine(1000);
             isDashing = false;
             yield return new WaitForSeconds(dashCooldown);
             canDash = true;
