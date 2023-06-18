@@ -47,7 +47,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        currentShootingPattern.Shoot(aimDirection, currentBullets);
+        currentShootingPattern.Shoot(aimDirection, currentBullets, this.transform.position);
     }
 
     private void UpdateAimDirection()

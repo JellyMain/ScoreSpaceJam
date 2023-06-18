@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IShoot
 {
-    public void Shoot(Vector2 direction, Bullet currentBullets);
+    public void Shoot(Vector2 direction, Bullet currentBullets, Vector2 pointSpawnBullet);
 }

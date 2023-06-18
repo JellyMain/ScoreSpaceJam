@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Pistol : IShoot
 {
-    public void Shoot(Vector2 direction, Bullet currentBullets)
+    public void Shoot(Vector2 direction, Bullet currentBullets, Vector2 pointSpawnBullet)
     {
 
-        Bullet spawnedBullet = currentBullets.SpawnBullet();
+        Bullet spawnedBullet = currentBullets.SpawnBullet(pointSpawnBullet);
         spawnedBullet.SetBulletDirection(direction);
     }
 }

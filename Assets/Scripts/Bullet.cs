@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     protected Rigidbody2D bulletRb;
-    public float damage;
+    public int damage;
     public GameObject bulletPrefab;
 
 
@@ -14,14 +14,22 @@ public class Bullet : MonoBehaviour
         bulletRb = GetComponent<Rigidbody2D>();
     }
 
-    public Bullet SpawnBullet()
+    public Bullet SpawnBullet(Vector2 pointSpawnBullet)
     {
-        Bullet spawnedBullet = Instantiate(bulletPrefab, Player.Instance.transform.position, Quaternion.identity).GetComponent<Bullet>();
+        Bullet spawnedBullet = Instantiate(bulletPrefab, pointSpawnBullet, Quaternion.identity).GetComponent<Bullet>();
         return spawnedBullet;
     }
 
     public void SetBulletDirection(Vector2 direction)
     {
         bulletRb.velocity = direction;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Player.Instance.UpdatePlayerHP(damage);
+        } 
     }
 }
