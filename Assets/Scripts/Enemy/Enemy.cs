@@ -11,23 +11,20 @@ public class Enemy : MonoBehaviour
     public Action OnDead;
     public Action OnShot;
 
-    public Rigidbody2D _rigibody2D;
-    public SpriteRenderer _spriteRenderer;
-
     private Vector2 randomCoinPosition;
 
     public int score;
 
     public int HP;
-    public int strength;
+    public int meleeDamage;
 
     public float endReachedDistance;
 
     public List<GameObject> _coins = new List<GameObject>();
+
     public void Start()
     {
-        _rigibody2D = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     public void OnEnable()
@@ -63,6 +60,7 @@ public class Enemy : MonoBehaviour
             Instantiate(coin, randomCoinPosition, Quaternion.identity);
         }
 
+        EventAgregator.WaveEnemyManager.Invoke(this);
         Player.Instance.AddScore(score);
 
         OnDead?.Invoke();

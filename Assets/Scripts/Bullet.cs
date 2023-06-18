@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BulletType
+{
+    PlayerBullet,
+    EnemyBullet
+}
+
 public class Bullet : MonoBehaviour
 {
     protected Rigidbody2D bulletRb;
@@ -11,6 +17,9 @@ public class Bullet : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject bulletEffect;
     public Action OnDestroy;
+
+    public BulletType bulletType;
+
 
 
     private void OnEnable()
@@ -43,6 +52,22 @@ public class Bullet : MonoBehaviour
     {
         SoundManager.Instance.PlayDestroyBullet(this.transform.position);
         Instantiate(bulletEffect, this.transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        Destroy(this);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (bulletType == BulletType.EnemyBullet && other.CompareTag("Player"))
+        {
+            Health health = other.GetComponent<Health>();
+            health.ReduceHealth(damage);
+            Destroy(gameObject);
+        }
+        else if (bulletType == BulletType.PlayerBullet && other.CompareTag("Enemy"))
+        {
+            Health health = other.GetComponent<Health>();
+            health.ReduceHealth(damage);
+            Destroy(gameObject);
+        }
     }
 }
