@@ -9,6 +9,7 @@ public class EnemyShoting : MonoBehaviour
 
     private Vector2 aimDirection;
 
+    public Gun gun;
     public GameObject startShot;
     public static EnemyShoting Instance { get; private set; }
 
@@ -30,7 +31,7 @@ public class EnemyShoting : MonoBehaviour
 
     public void Shoot()
     {
-        currentShootingPattern.Shoot(aimDirection, currentBullets, startShot.transform.position);
+        currentShootingPattern.Shoot(aimDirection, currentBullets, gun);
     }
 
     private void UpdateAimDirection()
