@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a33f3f9910aa1143bbcb2fcc47a7751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShooting: 0
 --- !u!4 &75658061
 Transform:
   m_ObjectHideFlags: 0
@@ -1440,7 +1441,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  bulletSpeed: 0
   bulletPrefab: {fileID: 0}
+  bulletEffect: {fileID: 0}
 --- !u!1 &1113926522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,7 +1586,7 @@ MonoBehaviour:
   _coins: []
   bulletSpeed: 10
   moveSpeed: 2
-  deadEffect: {fileID: 0}
+  deadEffect: {fileID: 5985634496115995770, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
   coldownAttack: 1
 --- !u!212 &1113926527
 SpriteRenderer:
@@ -1665,7 +1668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1448f91090cf0344b4077bc3c222e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentShootingPattern: {fileID: 0}
   currentBullets: {fileID: 5450570718012370112, guid: 324f8b776a38bd340a2e6856a7f7feba, type: 3}
+  gun: {fileID: 0}
   startShot: {fileID: 524644582}
 --- !u!114 &1113926530
 MonoBehaviour:
@@ -2557,6 +2562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc46dc7e31e1609408aee817d612ded9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboard: {fileID: 0}
   gameInput: {fileID: 75658060}
   rb: {fileID: 1788584129}
   moveSpeed: 20

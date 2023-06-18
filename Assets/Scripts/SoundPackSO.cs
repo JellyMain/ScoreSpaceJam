@@ -10,4 +10,6 @@ public class SoundPackSO : ScriptableObject
     public AudioClip coinAddSound;
     public AudioClip coinDestroySound;
     public AudioClip enemyDestroySound;
+    public AudioClip enemyShootSound;
+    public AudioClip bulletDestroySound;
 }

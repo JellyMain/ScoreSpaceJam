@@ -135,4 +135,14 @@ public class Player : MonoBehaviour
         _boxCollider2D.enabled = false;
         Destroy(this.gameObject, 2f);
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            collision.TryGetComponent<Bullet>(out Bullet bullet);
+            UpdatePlayerHP(bullet.damage);
+            bullet?.OnDestroy.Invoke();
+        }
+    }
 }

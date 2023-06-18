@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MachineGunPattern", menuName = "ShootingPatterns/MachineGunPattern")]
 public class MachineGun : IShoot
 {
-    public override void Shoot(Vector2 direction, Bullet currentBullets, Gun gunStats)
+    public override void Shoot(Vector2 direction, Bullet currentBullets, Gun gunStats, Vector2 startPointBulletMove)
     {
-        Bullet spawnedBullet = currentBullets.SpawnBullet();
+        Bullet spawnedBullet = currentBullets.SpawnBullet(startPointBulletMove);
 
         float maxSpread = gunStats.gunAccuracy * 45f;
         float spread = Random.Range(-maxSpread, maxSpread);

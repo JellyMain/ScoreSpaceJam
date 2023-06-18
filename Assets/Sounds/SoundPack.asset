@@ -17,3 +17,5 @@ MonoBehaviour:
   coinAddSound: {fileID: 8300000, guid: 272a23617fda00548b9c0a940f423df6, type: 3}
   coinDestroySound: {fileID: 8300000, guid: de14b38628898f44da0117e37749e68a, type: 3}
   enemyDestroySound: {fileID: 8300000, guid: de14b38628898f44da0117e37749e68a, type: 3}
+  enemyShootSound: {fileID: 8300000, guid: 2e85e243520e37741ad142436711e29c, type: 3}
+  bulletDestroySound: {fileID: 8300000, guid: 2e85e243520e37741ad142436711e29c, type: 3}

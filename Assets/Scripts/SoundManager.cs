@@ -52,4 +52,14 @@ public class SoundManager : MonoBehaviour
     {
         PlaySound(soundPackSO.enemyDestroySound, transform, 1);
     }
+
+    public void PlayEnemyShotEffect(Vector2 transform)
+    {
+        PlaySound(soundPackSO.enemyShootSound, transform, 0.3f);
+    }
+
+    public void PlayDestroyBullet(Vector2 transform)
+    {
+        PlaySound(soundPackSO.bulletDestroySound, transform, 0.3f);
+    }
 }

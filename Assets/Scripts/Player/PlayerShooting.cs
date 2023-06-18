@@ -35,7 +35,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (gameInput.isShooting && fireRateTimer >= currentGun.fireRate)
         {
-            currentGun.shootingPattern.Shoot(aimDirection, currentBullets, currentGun);
+            currentGun.shootingPattern.Shoot(aimDirection, currentBullets, currentGun, this.transform.position);
             fireRateTimer = 0;
         }
     }
