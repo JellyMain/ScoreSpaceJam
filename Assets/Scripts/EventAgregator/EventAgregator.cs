@@ -12,5 +12,6 @@ public class EventAgregator
     public static UnityEvent PlayerWin = new UnityEvent();
     public static UnityEvent PlayerLoose = new UnityEvent();
     public static UnityEvent ChooseGun = new UnityEvent();
+    public static UnityEvent Unpause = new UnityEvent();
 
 }

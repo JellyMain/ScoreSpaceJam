@@ -24,7 +24,7 @@ public class Leaderboard : MonoBehaviour
 
     public void StartCoroutineSubmitScoreRoutine()
     {
-        if (Player.Instance.score >0)
+        if (Player.Instance.score > 0)
         {
             StartCoroutine(SubmitScoreRoutine(Player.Instance.score));
         }
@@ -124,12 +124,13 @@ public class Leaderboard : MonoBehaviour
             {
                 if (responce.success)
                 {
-                    string tempPlayerNames = "Names\n";
-                    string tempPlayerScores = "Scores\n";
+
 
                     LootLockerLeaderboardMember[] members = responce.items;
                     for (int i = 0; i < members.Length; i++)
                     {
+                        string tempPlayerNames = "Names\n";
+                        string tempPlayerScores = "Scores\n";
                         tempPlayerNames += members[i].rank + ". ";
                         if (members[i].player.name != "")
                         {
@@ -142,7 +143,7 @@ public class Leaderboard : MonoBehaviour
 
                         tempPlayerScores += members[i].score + "\n";
                         tempPlayerNames += "\n";
-                       
+
                         if (count < 1)
                         {
                             itemManager.CreateWinResultScoreItem(tempPlayerNames, tempPlayerScores);
@@ -180,12 +181,13 @@ public class Leaderboard : MonoBehaviour
             {
                 if (responce.success)
                 {
-                    string tempPlayerNames = "Names\n";
-                    string tempPlayerScores = "Scores\n";
+
 
                     LootLockerLeaderboardMember[] members = responce.items;
                     for (int i = 0; i < members.Length; i++)
                     {
+                        string tempPlayerNames = "Names\n";
+                        string tempPlayerScores = "Scores\n";
                         tempPlayerNames += members[i].rank + ". ";
                         if (members[i].player.name != "")
                         {

@@ -19,6 +19,7 @@ public class ManagerOfLevel : MonoBehaviour
 
         EventAgregator.PlayerWin.AddListener(SeeWinTable);
         EventAgregator.PlayerLoose.AddListener(SeeLooseTable);
+        EventAgregator.Unpause.AddListener(ReturnInGame);
     }
 
     private void Update()
