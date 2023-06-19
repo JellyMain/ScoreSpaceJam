@@ -13,7 +13,7 @@ public class MusicBlink : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     public Transform circleTransform; // The Transform of your circle
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     public float minScale = 15f; // minimum scale of the circle
     public float maxScale = 20f; // maximum scale of the circle
     public Color fromColor;
@@ -22,6 +22,7 @@ public class MusicBlink : MonoBehaviour
     private void Awake()
     {
         clipSampleData = new float[sampleDataLength];
+        audioSource = GetComponentInParent<AudioSource>();
     }
 
     private void Update()
