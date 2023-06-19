@@ -12,12 +12,24 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] private int waveCount = 5;
     private int countCurrentEnemy = 0;
 
-    private List<Enemy> createdEnemies = new List<Enemy>();
+    public List<Enemy> createdEnemies = new List<Enemy>();
 
     private Coroutine createEnemiesCoroutine;
     private Coroutine createWaveEnemiesCoroutine;
 
     private int countWave = 0;
+
+    public static SpawnSystem Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
+
     private IEnumerator StartWaveCreateEnemies()
     {
         while (countCurrentEnemy < enemyCount)

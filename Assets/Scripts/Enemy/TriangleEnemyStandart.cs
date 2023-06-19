@@ -1,9 +1,9 @@
-using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
-public class SimpleEnemy : Enemy, IMove, IDead
+public class TriangleEnemyStandart : Enemy, IMove, IDead
 {
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float moveSpeed;
@@ -27,7 +27,7 @@ public class SimpleEnemy : Enemy, IMove, IDead
 
         if (Vector2.Distance(Player.Instance.transform.position, this.transform.position) >= endReachedDistance)
         {
-            // _aIPath.canMove = true;
+            _aIPath.canMove = true;
             _enemyShoting.canShoot = false;
         }
         else
@@ -54,8 +54,7 @@ public class SimpleEnemy : Enemy, IMove, IDead
         SetInterfaces(this, this);
         if (Player.Instance != null)
         {
-            // _aIDestinationSetter.target = Player.Instance.transform;
+            _aIDestinationSetter.target = Player.Instance.transform;
         }
     }
-
 }

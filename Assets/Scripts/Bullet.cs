@@ -16,21 +16,16 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed;
     public GameObject bulletPrefab;
     public GameObject bulletEffect;
-    public Action OnDestroy;
 
     public BulletType bulletType;
 
+    private Vector2 originalDirection;
+    private float timeAlive;
+    private bool isWaveMove = false;
+    private float waveAmplitude;
+    private float waveFrequency;
 
 
-    private void OnEnable()
-    {
-        OnDestroy += DestroyBullet;
-    }
-
-    private void OnDisable()
-    {
-        OnDestroy -= DestroyBullet;
-    }
 
     private void Awake()
     {
@@ -43,22 +38,45 @@ public class Bullet : MonoBehaviour
         return spawnedBullet;
     }
 
+
+
+
     public void SetBulletDirection(Vector2 direction)
     {
         bulletRb.velocity = direction * bulletSpeed;
+        originalDirection = direction * bulletSpeed;
+        timeAlive = 0f;
+    }
+
+    public void MoveInWavePattern(float amplitude, float frequency)
+    {
+        isWaveMove = true;
+        waveAmplitude = amplitude;
+        waveFrequency = frequency;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isWaveMove)
+        {
+            timeAlive += Time.fixedDeltaTime;
+            Vector2 perpendicular = new Vector2(-originalDirection.y, originalDirection.x).normalized;
+            bulletRb.velocity = originalDirection + Mathf.Sin(timeAlive * waveFrequency) * waveAmplitude * perpendicular;
+        }
     }
 
     private void DestroyBullet()
     {
-        SoundManager.Instance.PlayDestroyBullet(this.transform.position);
-        Instantiate(bulletEffect, this.transform.position, Quaternion.identity);
-        Destroy(this);
+        isWaveMove = false;
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (bulletType == BulletType.EnemyBullet && other.CompareTag("Player"))
         {
+            if (Player.Instance.isDashing) return;
             Health health = other.GetComponent<Health>();
             health.ReduceHealth(damage);
             Destroy(gameObject);

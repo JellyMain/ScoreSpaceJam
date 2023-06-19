@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] float dashCooldown = 2f;
 
     public bool isDashing = false;
+    public bool gotHit = false;
     private bool canDash = true;
 
     public static Player Instance;
@@ -59,14 +60,10 @@ public class Player : MonoBehaviour
     {
         if (canDash)
         {
-            Debug.Log("is Dashing");
             canDash = false;
             isDashing = true;
             rb.velocity = gameInput.GetMovementInput() * dashSpeed;
             yield return new WaitForSeconds(dashDuration);
-            // leaderboard.StartSettingName();
-            // leaderboard.StartGettingName();
-            // yield return leaderboard.SubmitScoreRoutine(1000);
             isDashing = false;
             yield return new WaitForSeconds(dashCooldown);
             canDash = true;

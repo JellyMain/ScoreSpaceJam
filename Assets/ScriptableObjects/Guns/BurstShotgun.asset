@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b93cda0ca27c740ab0f27c01984b20, type: 3}
-  m_Name: ShotgunPattern
+  m_Script: {fileID: 11500000, guid: 3aea6ae1e97f65d44ac0724689583a4a, type: 3}
+  m_Name: BurstShotgun
   m_EditorClassIdentifier: 
-  bulletsPerShot: 5
-  spreadAngle: 45
+  gunName: Shotgun
+  shootingPattern: {fileID: 11400000, guid: 2340b78c8b7a7ae44ab6198d59cd4cf1, type: 2}
+  fireRate: 0.1
+  burstMode: 1
+  bulletsPerBurst: 3
+  timeBetweenBursts: 1.7

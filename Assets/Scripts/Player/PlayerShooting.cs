@@ -35,6 +35,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (gameInput.isShooting && fireRateTimer >= currentGun.fireRate)
         {
+            CinemachineShake.Instance.ShakeCamera(5, 0.1f);
             currentGun.shootingPattern.Shoot(aimDirection, currentBullets, currentGun, this.transform.position);
             fireRateTimer = 0;
         }

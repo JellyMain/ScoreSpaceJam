@@ -56,12 +56,12 @@ MonoBehaviour:
   moveSpeed: 10
   roationSpeed: 30
   dashSpeed: 30
-  dashDuration: 0.2
+  dashDuration: 0.3
   dashCooldown: 0.4
   isDashing: 0
+  gotHit: 0
   countCoin: 0
   score: 0
-  HP: 0
 --- !u!114 &310090665147731014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadEffect: {fileID: 0}
+  animator: {fileID: 4739556324814850277}
+  isPlayer: 1
   health: 100
 --- !u!50 &2131171067498137017
 Rigidbody2D:
@@ -117,7 +119,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &508231918515346082
 BoxCollider2D:
   m_ObjectHideFlags: 0

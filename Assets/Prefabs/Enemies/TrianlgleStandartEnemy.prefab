@@ -11,17 +11,15 @@ GameObject:
   - component: {fileID: 1923274695875565560}
   - component: {fileID: 3212897841173872025}
   - component: {fileID: 6555542676494366902}
-  - component: {fileID: 58939034629478327}
   - component: {fileID: 754347608603761647}
   - component: {fileID: 4684399361807317797}
   - component: {fileID: 7428517799460723979}
   - component: {fileID: 1225094108704978949}
   - component: {fileID: 871861851139452721}
-  - component: {fileID: 993194695503968393}
-  - component: {fileID: 2231580149206037961}
-  - component: {fileID: 7946005617177268427}
+  - component: {fileID: 7052746326185954570}
+  - component: {fileID: 2303377121853637080}
   m_Layer: 0
-  m_Name: SimpleShotEnemy
+  m_Name: TrianlgleStandartEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8, g: 0.30588236, b: 1, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,28 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadEffect: {fileID: 0}
-  animator: {fileID: 7946005617177268427}
   health: 100
---- !u!114 &58939034629478327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447362482626977776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370b6cb0c441f6243a6735265591e30e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 200
-  HP: 30
-  meleeDamage: 0
-  endReachedDistance: 20
-  _coins: []
-  bulletSpeed: 10
-  moveSpeed: 2
-  deadEffect: {fileID: 5985634496115995770, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
 --- !u!50 &754347608603761647
 Rigidbody2D:
   serializedVersion: 4
@@ -253,10 +230,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBullets: {fileID: 1350189553313934072, guid: 7917abd3028b53641a30c8b5960074ce, type: 3}
-  gun: {fileID: 11400000, guid: f8e48ad93d47dcf42833e6a4926c9465, type: 2}
+  gun: {fileID: 11400000, guid: d1ca4046aa8a51a4d9a0d6003746f927, type: 2}
   canShoot: 0
---- !u!58 &993194695503968393
-CircleCollider2D:
+--- !u!60 &7052746326185954570
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -288,9 +265,22 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &2231580149206037961
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5773587}
+      - {x: -0.5, y: -0.28866667}
+      - {x: 0.5, y: -0.28866667}
+  m_UseDelaunayMesh: 0
+--- !u!114 &2303377121853637080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,31 +289,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1447362482626977776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9dc1250543f30d4ebf8fcd13cc80f67, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dca54b3933f76746ae3aa69d74989ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 12
-  minDistance: 2
-  obstacleAvoidDistance: 5
+  score: 300
+  HP: 100
+  meleeDamage: 0
+  endReachedDistance: 30
+  _coins: []
+  bulletSpeed: 5
   moveSpeed: 2
---- !u!95 &7946005617177268427
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447362482626977776}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9de46f3a32b7bbf4cbe54d5e4d7f3249, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  deadEffect: {fileID: 0}

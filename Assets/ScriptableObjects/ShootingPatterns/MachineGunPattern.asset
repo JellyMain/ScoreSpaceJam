@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe1b196f06f4cf4e9886f1f30f5e5ad, type: 3}
   m_Name: MachineGunPattern
   m_EditorClassIdentifier: 
+  gunAccuracy: 0.123

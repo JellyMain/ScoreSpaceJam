@@ -32,15 +32,22 @@ public class EnemyShoting : MonoBehaviour
     {
         while (true)
         {
-            if (canShoot)
+            if (!canShoot) yield return null;
+            if (canShoot && !gun.burstMode)
             {
                 Shoot();
                 yield return new WaitForSeconds(gun.fireRate);
             }
-            else
+            else if (canShoot && gun.burstMode)
             {
-                yield return null;
+                for (int i = 0; i < gun.bulletsPerBurst; i++)
+                {
+                    Shoot();
+                    yield return new WaitForSeconds(gun.fireRate);
+                }
+                yield return new WaitForSeconds(gun.timeBetweenBursts);
             }
+
         }
     }
 

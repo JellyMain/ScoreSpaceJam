@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PlayerVisuals : MonoBehaviour
 {
-    private const string IS_DASHING = "isDashing";
+    private const string IS_HIT = "isHit";
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] ParticleSystem playerParticles;
@@ -18,20 +18,24 @@ public class PlayerVisuals : MonoBehaviour
         playerTrailRenderer = GetComponent<TrailRenderer>();
     }
 
+    private void Update()
+    {
+        SetInvisibilityEffect();
+    }
 
     private void FixedUpdate()
     {
         HandleDeformation();
-        SetDashingEffects();
+
     }
 
 
-    private void SetDashingEffects()
+    private void SetInvisibilityEffect()
     {
         playerTrailRenderer.emitting = Player.Instance.isDashing;
-        if (Player.Instance.isDashing)
+        if (Player.Instance.isDashing || Player.Instance.gotHit)
         {
-            animator.SetTrigger(IS_DASHING);
+            animator.SetTrigger(IS_HIT);
         }
     }
 

@@ -8,8 +8,9 @@ public class Gun : ScriptableObject
     public string gunName;
     public IShoot shootingPattern;
     public float fireRate;
-    public int bulletsPerShot;
-    [Range(0, 1)] public float gunAccuracy;
-    public float spreadAngle;
+    [Header("BurstMode")]
+    public bool burstMode;
+    public int bulletsPerBurst;
+    public float timeBetweenBursts;
 }
 
