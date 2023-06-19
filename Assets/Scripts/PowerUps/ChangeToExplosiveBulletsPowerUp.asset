@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cef739a82d102249928a9ae38dda064, type: 3}
   m_Name: ChangeToExplosiveBulletsPowerUp
   m_EditorClassIdentifier: 
-  explosiveBullets: {fileID: 0}
+  powerUpName: Explosive Bullets
+  description: Changes your current bullets to explosive
+  explosiveBullets: {fileID: 7157931585749927529, guid: ccb7fef56c3d18b4e98cd905967f8f1a, type: 3}

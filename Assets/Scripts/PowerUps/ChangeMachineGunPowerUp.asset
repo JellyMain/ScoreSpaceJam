@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af1a1bb3e84edf47b722faaa8a7ee6f, type: 3}
   m_Name: ChangeMachineGunPowerUp
   m_EditorClassIdentifier: 
-  machineGun: {fileID: 0}
+  powerUpName: Machine Gun
+  description: Changing your current gun to Machine Gun
+  machineGun: {fileID: 11400000, guid: bb4376a4fc70436478de8496a409b1ab, type: 2}

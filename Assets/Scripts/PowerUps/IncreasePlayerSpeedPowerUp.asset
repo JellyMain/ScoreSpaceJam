@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dab6d2370bcf504ab9e8ba2a4bcd979, type: 3}
   m_Name: IncreasePlayerSpeedPowerUp
   m_EditorClassIdentifier: 
-  percentage: 0
+  powerUpName: Increase player Speed
+  description: Increases your speed by 10%
+  percentage: 10
