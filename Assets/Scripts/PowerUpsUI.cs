@@ -24,6 +24,7 @@ public class PowerUpsUI : MonoBehaviour
     private void SelectPowerUp(PowerUps powerUp)
     {
         powerUp.Activate();
+        SoundManager.Instance.PlayPowerUpSound();
         this.gameObject.SetActive(false);
     }
 

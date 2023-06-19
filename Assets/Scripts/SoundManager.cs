@@ -37,29 +37,36 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    //example of playing sound
-    public void PlaySomeSound()
-    {
-        PlaySound(soundPackSO.exampleSound, new Vector2(0, 0), 1);
-    }
-
     public void PlayAddCoinSounds(Vector2 transform)
     {
         PlaySound(soundPackSO.coinAddSound, transform, 1);
     }
 
-    public void PlayDestroyEnemy(Vector2 transform)
+    public void PlayEnemyKillSound(Vector2 transform)
     {
-        PlaySound(soundPackSO.enemyDestroySound, transform, 1);
+        PlaySound(soundPackSO.enemyKillSounds, transform, 1);
     }
 
-    public void PlayEnemyShotEffect(Vector2 transform)
+    public void PlayPlayerKillSound(Vector2 transform)
     {
-        PlaySound(soundPackSO.enemyShootSound, transform, 0.3f);
+        PlaySound(soundPackSO.playerKillSound, transform, 1f);
     }
 
-    public void PlayDestroyBullet(Vector2 transform)
+
+    public void PlayDashSound(Vector2 transform)
     {
-        PlaySound(soundPackSO.bulletDestroySound, transform, 0.3f);
+        PlaySound(soundPackSO.dashSound, transform, 1f);
     }
+
+
+    public void PlayPowerUpSound()
+    {
+        PlaySound(soundPackSO.powerUpSound, Camera.main.transform.position, 0.5f);
+    }
+
+    public void PlayerEnemyShootSound(Vector2 transform)
+    {
+        PlaySound(soundPackSO.enemyShootSounds, transform, 0.5f);
+    }
+
 }

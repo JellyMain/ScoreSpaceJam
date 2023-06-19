@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
     private void StartDash()
     {
         StartCoroutine(HandleDash());
-
     }
 
 
@@ -60,6 +59,7 @@ public class Player : MonoBehaviour
     {
         if (canDash)
         {
+            SoundManager.Instance.PlayDashSound(transform.position);
             canDash = false;
             isDashing = true;
             rb.velocity = gameInput.GetMovementInput() * dashSpeed;
