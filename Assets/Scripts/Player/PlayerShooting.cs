@@ -53,4 +53,21 @@ public class PlayerShooting : MonoBehaviour
         return worldMousePos;
     }
 
+    public void SetNewGun(Gun newGun)
+    {
+        currentGun = newGun;
+    }
+
+
+    public void SetNewBullets(Bullet newBullets)
+    {
+        currentBullets = newBullets;
+    }
+
+    public void IncreaseDamage(float percentage)
+    {
+        float damageToAdd = currentBullets.damage / 100 * percentage;
+        currentBullets.damage += damageToAdd;
+    }
+
 }

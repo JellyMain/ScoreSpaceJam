@@ -8,9 +8,9 @@ public class Health : MonoBehaviour
     [SerializeField] ParticleSystem deadEffect;
     [SerializeField] Animator animator;
     public bool isPlayer;
-    public int health;
+    public float health;
 
-    public void ReduceHealth(int damage)
+    public void ReduceHealth(float damage)
     {
         health -= damage;
         animator.SetTrigger(IS_HIT);
@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public int GetHealth()
+    public float GetHealth()
     {
         return health;
     }

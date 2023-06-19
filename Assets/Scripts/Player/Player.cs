@@ -100,4 +100,11 @@ public class Player : MonoBehaviour
         this.score += score;
         EventAgregator.updatePlayerUI.Invoke();
     }
+
+
+    public void IncreasePlayerSpeed(float percentage)
+    {
+        float speedToAdd = moveSpeed / 100 * percentage;
+        moveSpeed += speedToAdd;
+    }
 }

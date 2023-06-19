@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7157931585749927529}
   m_Layer: 0
   m_Name: ExplosiveBullet
-  m_TagString: Bullet
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   bulletType: 0
   explodeParticles: {fileID: 7175263589292547937, guid: 924532a09dcc3dd4d8dc886c365de7c3, type: 3}
   particlesCount: 6
-  explodeTime: 1
+  explodeTime: 1.2
 --- !u!1 &8689938129355212446
 GameObject:
   m_ObjectHideFlags: 0

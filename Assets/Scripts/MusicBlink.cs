@@ -16,6 +16,8 @@ public class MusicBlink : MonoBehaviour
     public AudioSource audioSource;
     public float minScale = 15f; // minimum scale of the circle
     public float maxScale = 20f; // maximum scale of the circle
+    public Color fromColor;
+    public Color toColor;
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class MusicBlink : MonoBehaviour
 
             float scale = Mathf.Lerp(minScale, maxScale, clipLoudness);
             circleTransform.localScale = new Vector3(scale, scale, scale);
-            spriteRenderer.color = Color.Lerp(Color.green, Color.red, clipLoudness);
+            spriteRenderer.color = Color.Lerp(fromColor, toColor, clipLoudness);
         }
     }
 }

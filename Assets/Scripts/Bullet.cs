@@ -12,7 +12,7 @@ public enum BulletType
 public class Bullet : MonoBehaviour
 {
     protected Rigidbody2D bulletRb;
-    public int damage;
+    public float damage;
     public float bulletSpeed;
     public GameObject bulletPrefab;
     public GameObject bulletEffect;
