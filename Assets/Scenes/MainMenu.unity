@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leaderboards
       objectReference: {fileID: 0}
+    - target: {fileID: 4229413664047591046, guid: 790905ac5c693a848ace1eabf29b7d9b, type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 3069413646235171899, guid: 4dda3149ce1a57142b4a5c79c5805706, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

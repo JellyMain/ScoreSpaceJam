@@ -23,3 +23,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b5fb634b84db59f478bd243c0b1356a3, type: 3}
   - {fileID: 8300000, guid: 542fed42c648a6347a3f56c67b79886a, type: 3}
   - {fileID: 8300000, guid: 6812c197826cbf74cade1136b598d461, type: 3}
+  dashSound: {fileID: 8300000, guid: dbecf4a3b2f85d849a787b44d24f7e55, type: 3}
+  powerUpSound: {fileID: 8300000, guid: bf56dff3d3e43bd448f900c8609f2a52, type: 3}
