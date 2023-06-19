@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad246f754ecd7746bba84f68e0beec6, type: 3}
   m_Name: IncreaseDamagePowerUp
   m_EditorClassIdentifier: 
-  percentage: 0
+  powerUpName: Increase Damage
+  description: Increases damage by 15%
+  percentage: 15

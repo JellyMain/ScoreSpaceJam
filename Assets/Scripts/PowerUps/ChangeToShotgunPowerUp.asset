@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84019716fd965a3438d28ccf55dcb536, type: 3}
   m_Name: ChangeToShotgunPowerUp
   m_EditorClassIdentifier: 
-  shotgun: {fileID: 0}
+  powerUpName: Shotgun
+  description: Changes your current gun to Shotgun
+  shotgun: {fileID: 11400000, guid: 03177f8c95559f64bbb15f37f2cb8d36, type: 2}

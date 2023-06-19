@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
 
     public int score;
 
-    public int HP;
     public int meleeDamage;
 
     public float endReachedDistance;
@@ -80,17 +79,4 @@ public class Enemy : MonoBehaviour
         this.dead = dead;
     }
 
-    public void UpdateEnemyHP(int amount)
-    {
-        if (HP > amount)
-        {
-            HP -= amount;
-        }
-        else
-        {
-            EnemyDead();
-        }
-
-        EventAgregator.updatePlayerUI.Invoke();
-    }
 }
