@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1ac276ef6772a48a387c3135e1d7d1, type: 3}
   m_Name: SoundPack
   m_EditorClassIdentifier: 
-  exampleSound: {fileID: 0}
-  explosionSound: {fileID: 0}
-  coinAddSound: {fileID: 8300000, guid: 272a23617fda00548b9c0a940f423df6, type: 3}
-  coinDestroySound: {fileID: 8300000, guid: de14b38628898f44da0117e37749e68a, type: 3}
-  enemyDestroySound: {fileID: 8300000, guid: de14b38628898f44da0117e37749e68a, type: 3}
-  enemyShootSound: {fileID: 8300000, guid: 2e85e243520e37741ad142436711e29c, type: 3}
-  bulletDestroySound: {fileID: 8300000, guid: 2e85e243520e37741ad142436711e29c, type: 3}
+  coinAddSound: {fileID: 8300000, guid: 3bbb58164bdff054fbaef5d67977ec73, type: 3}
+  enemyKillSounds:
+  - {fileID: 8300000, guid: 0f155b98e3f59384b87a737958000d5d, type: 3}
+  - {fileID: 8300000, guid: b1475829d48130f45abd813302a4b790, type: 3}
+  - {fileID: 8300000, guid: 5f67ad49e35935f42aaa6cd322ce9a2d, type: 3}
+  playerKillSound: {fileID: 8300000, guid: 94a1495cb74407e41a286a981f89b3d2, type: 3}
+  enemyShootSounds:
+  - {fileID: 8300000, guid: c5210861a4a0a5444b9e800cf1bd07bc, type: 3}
+  - {fileID: 8300000, guid: b5fb634b84db59f478bd243c0b1356a3, type: 3}
+  - {fileID: 8300000, guid: 542fed42c648a6347a3f56c67b79886a, type: 3}
+  - {fileID: 8300000, guid: 6812c197826cbf74cade1136b598d461, type: 3}

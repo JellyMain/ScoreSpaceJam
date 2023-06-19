@@ -28,12 +28,12 @@ public class Enemy : MonoBehaviour
 
     public void OnEnable()
     {
-        OnDead += () => SoundManager.Instance.PlayDestroyEnemy(this.transform.position);
+        OnDead += () => SoundManager.Instance.PlayEnemyKillSound(this.transform.position);
     }
 
     public void OnDisable()
     {
-        OnDead -= () => SoundManager.Instance.PlayDestroyEnemy(this.transform.position);
+        OnDead -= () => SoundManager.Instance.PlayEnemyKillSound(this.transform.position);
     }
 
     private void FixedUpdate()
@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour
 
         EventAgregator.WaveEnemyManager.Invoke(this);
         Player.Instance.AddScore(score);
+        SoundManager.Instance.PlayEnemyKillSound(transform.position);
 
         OnDead?.Invoke();
         dead?.Dead();

@@ -36,12 +36,14 @@ public class EnemyShoting : MonoBehaviour
             if (canShoot && !gun.burstMode)
             {
                 Shoot();
+                SoundManager.Instance.PlayerEnemyShootSound(transform.position);
                 yield return new WaitForSeconds(gun.fireRate);
             }
             else if (canShoot && gun.burstMode)
             {
                 for (int i = 0; i < gun.bulletsPerBurst; i++)
                 {
+                    SoundManager.Instance.PlayerEnemyShootSound(transform.position);
                     Shoot();
                     yield return new WaitForSeconds(gun.fireRate);
                 }

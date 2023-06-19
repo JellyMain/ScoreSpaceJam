@@ -34,8 +34,9 @@ public class Health : MonoBehaviour
 
         if (isPlayer == true)
         {
-            if (health<1)
+            if (health < 1)
             {
+                SoundManager.Instance.PlayPlayerKillSound(transform.position);
                 EventAgregator.PlayerLoose.Invoke();
             }
         }
