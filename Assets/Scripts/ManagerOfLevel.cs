@@ -7,12 +7,16 @@ public class ManagerOfLevel : MonoBehaviour
     public GameObject pauseMenuTable;
     public GameObject winTable;
     public GameObject looseTable;
+    public GameObject selectPowerUpOnCanvas;
 
     private bool _isPause = false;
 
     private void Awake()
     {
         _isPause = false;
+        EventAgregator.ChooseGun.AddListener(SelectPowerUpOnCanvas);
+        EventAgregator.ChooseGun.AddListener(PauseInGame);
+
         EventAgregator.PlayerWin.AddListener(SeeWinTable);
         EventAgregator.PlayerLoose.AddListener(SeeLooseTable);
     }
@@ -32,6 +36,11 @@ public class ManagerOfLevel : MonoBehaviour
         {
             CloseMenuInGame();
         }
+    }
+
+    public void SelectPowerUpOnCanvas()
+    {
+        selectPowerUpOnCanvas.SetActive(true);
     }
 
     private void OpenMenuInGame()

@@ -16,15 +16,14 @@ public class PowerUpsUI : MonoBehaviour
         for (int i = 0; i < powerUpCards.Count; i++)
         {
             PowerUps randomPowerUp = allPowerUps[UnityEngine.Random.Range(0, allPowerUps.Count)];
-            powerUpCards[i].onClick.AddListener(() => SelectPowerUp(randomPowerUp));
+            powerUpCards[i].onClick.AddListener(() => SelectPowerUpOffCanvas(randomPowerUp));
             powerUpCardDescriptions[i].text = randomPowerUp.description;
         }
     }
 
-    private void SelectPowerUp(PowerUps powerUp)
+    private void SelectPowerUpOffCanvas(PowerUps powerUp)
     {
         powerUp.Activate();
         this.gameObject.SetActive(false);
     }
-
 }

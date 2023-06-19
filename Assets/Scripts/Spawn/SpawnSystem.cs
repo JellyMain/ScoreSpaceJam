@@ -67,7 +67,7 @@ public class SpawnSystem : MonoBehaviour
 
     private IEnumerator WaveManager()
     {
-        Debug.Log(countWave);
+        EventAgregator.ChooseGun.Invoke();
         if (countWave < 1)
         {
             _playerUI.timerForWavef += 30f;
