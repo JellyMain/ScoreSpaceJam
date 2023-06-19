@@ -17,7 +17,17 @@ public class Leaderboard : MonoBehaviour
     private void Awake()
     {
         EventAgregator.PlayerWin.AddListener(StartCoroutineFetchWinScores);
+        EventAgregator.PlayerWin.AddListener(StartCoroutineSubmitScoreRoutine);
         EventAgregator.PlayerLoose.AddListener(StartCoroutineFetchLooseScores);
+        EventAgregator.PlayerLoose.AddListener(StartCoroutineSubmitScoreRoutine);
+    }
+
+    public void StartCoroutineSubmitScoreRoutine()
+    {
+        if (Player.Instance.score >0)
+        {
+            StartCoroutine(SubmitScoreRoutine(Player.Instance.score));
+        }
     }
 
     public IEnumerator SubmitScoreRoutine(int scoreToUpload)
@@ -54,13 +64,14 @@ public class Leaderboard : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator SetPlayerName()
+    private IEnumerator SetPlayerName(string name)
     {
-        LootLockerSDKManager.SetPlayerName("mynewName", (response) =>
+        LootLockerSDKManager.SetPlayerName(name, (response) =>
         {
             if (response.success)
             {
                 Debug.Log("PLAYER NAME SET SUCCESFULLY");
+                PlayerPrefs.SetString("PlayerName", name);
             }
             else
             {
@@ -106,7 +117,6 @@ public class Leaderboard : MonoBehaviour
     public IEnumerator FetchWinScoresRoutine()
     {
         bool done = false;
-        yield return new WaitForSeconds(1f);
 
         if (count < 1)
         {
@@ -132,11 +142,11 @@ public class Leaderboard : MonoBehaviour
 
                         tempPlayerScores += members[i].score + "\n";
                         tempPlayerNames += "\n";
-                        if (count >= 1)
+                       
+                        if (count < 1)
                         {
-                            return;
+                            itemManager.CreateWinResultScoreItem(tempPlayerNames, tempPlayerScores);
                         }
-                        itemManager.CreateWinResultScoreItem(tempPlayerNames, tempPlayerScores);
                     }
                 }
                 else
@@ -189,7 +199,10 @@ public class Leaderboard : MonoBehaviour
                         tempPlayerScores += members[i].score + "\n";
                         tempPlayerNames += "\n";
 
-                        itemManager.CreateLooseResultScoreItem(tempPlayerNames, tempPlayerScores);
+                        if (count < 1)
+                        {
+                            itemManager.CreateLooseResultScoreItem(tempPlayerNames, tempPlayerScores);
+                        }
                     }
                 }
                 else
@@ -212,9 +225,9 @@ public class Leaderboard : MonoBehaviour
         yield return new WaitWhile(() => done == false);
     }
 
-    public void StartSettingName()
+    public void StartSettingName(string name)
     {
-        StartCoroutine(SetPlayerName());
+        StartCoroutine(SetPlayerName(name));
     }
 
 

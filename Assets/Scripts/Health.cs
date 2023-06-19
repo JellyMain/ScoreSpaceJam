@@ -32,9 +32,17 @@ public class Health : MonoBehaviour
             Instantiate(deadEffect, transform.position, Quaternion.identity);
         }
 
+        if (isPlayer == true)
+        {
+            if (health<1)
+            {
+                EventAgregator.PlayerLoose.Invoke();
+            }
+        }
         if (TryGetComponent<Enemy>(out Enemy enemy))
         {
             Player.Instance.AddScore(enemy.score);
+            enemy.EnemyDead();
         }
         EventAgregator.updatePlayerUI.Invoke();
         Destroy(gameObject);

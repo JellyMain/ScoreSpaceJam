@@ -19,6 +19,7 @@ public class SpawnSystem : MonoBehaviour
 
     private int countWave = 0;
 
+    private PlayerUI _playerUI;
     public static SpawnSystem Instance { get; private set; }
 
     private void Awake()
@@ -52,13 +53,13 @@ public class SpawnSystem : MonoBehaviour
             yield return new WaitForSeconds(coldownSpawnEnemy);
         }
 
-        enemyCount += 5;
+        enemyCount += 1;
     }
     private void DeleteEnemyFromList(Enemy enemy)
     {
         createdEnemies.Remove(enemy);
-
-        if (createdEnemies.Count == 0)
+        countCurrentEnemy--;
+        if (countCurrentEnemy == 0 || createdEnemies.Count == 0)
         {
             createWaveEnemiesCoroutine = StartCoroutine(WaveManager());
         }
@@ -66,8 +67,10 @@ public class SpawnSystem : MonoBehaviour
 
     private IEnumerator WaveManager()
     {
-        if (countWave < 5)
+        Debug.Log(countWave);
+        if (countWave < 1)
         {
+            _playerUI.timerForWavef += 30f;
             countWave++;
             StopCoroutine(createEnemiesCoroutine);
             createEnemiesCoroutine = null;
@@ -83,13 +86,14 @@ public class SpawnSystem : MonoBehaviour
 
     void Start()
     {
+        _playerUI = FindObjectOfType<PlayerUI>();
         createEnemiesCoroutine = StartCoroutine(StartWaveCreateEnemies());
         EventAgregator.WaveEnemyManager.AddListener(DeleteEnemyFromList);
     }
 
     private void OnDestroy()
     {
-        if (createEnemiesCoroutine!= null)
+        if (createEnemiesCoroutine != null)
         {
             StopCoroutine(createEnemiesCoroutine);
             createEnemiesCoroutine = null;

@@ -9,10 +9,11 @@ public class PlayerUI : MonoBehaviour
     public TextMeshProUGUI coin;
     public TextMeshProUGUI time;
     public TextMeshProUGUI timeForWave;
-   // public TextMeshProUGUI playerHP;
+    // public TextMeshProUGUI playerHP;
+    private bool _isLoose = false;
 
     private float timer;
-    public float timerForWave;
+    public float timerForWavef;
 
     void Start()
     {
@@ -28,12 +29,13 @@ public class PlayerUI : MonoBehaviour
         timer += Time.deltaTime;
         time.text = timer.ToString();
 
-        timerForWave -= Time.deltaTime;
-        if (timerForWave <= 1)
+        timerForWavef -= Time.deltaTime;
+        if (timerForWavef <= 1 & _isLoose == false)
         {
+            _isLoose = true;
             EventAgregator.PlayerLoose.Invoke();
         }
-        timeForWave.text = timerForWave.ToString();
+        timeForWave.text = timerForWavef.ToString();
     }
 
     private void UpdateScore()

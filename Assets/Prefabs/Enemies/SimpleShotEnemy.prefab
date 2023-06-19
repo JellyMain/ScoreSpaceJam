@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadEffect: {fileID: 0}
   animator: {fileID: 7946005617177268427}
+  isPlayer: 0
   health: 100
 --- !u!114 &58939034629478327
 MonoBehaviour:
@@ -122,10 +123,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 200
-  HP: 30
   meleeDamage: 0
   endReachedDistance: 20
-  _coins: []
+  _coins:
+  - {fileID: 1255147335184881285, guid: 68604f826027988468ae2d1ec568a107, type: 3}
+  - {fileID: 1255147335184881285, guid: 68604f826027988468ae2d1ec568a107, type: 3}
+  - {fileID: 1255147335184881285, guid: 68604f826027988468ae2d1ec568a107, type: 3}
+  - {fileID: 1255147335184881285, guid: 68604f826027988468ae2d1ec568a107, type: 3}
+  - {fileID: 1255147335184881285, guid: 68604f826027988468ae2d1ec568a107, type: 3}
   bulletSpeed: 10
   moveSpeed: 2
   deadEffect: {fileID: 5985634496115995770, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
