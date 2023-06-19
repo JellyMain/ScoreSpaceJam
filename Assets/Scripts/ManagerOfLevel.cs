@@ -5,35 +5,69 @@ using UnityEngine;
 public class ManagerOfLevel : MonoBehaviour
 {
     public GameObject pauseMenuTable;
+    public GameObject winTable;
+    public GameObject looseTable;
 
     private bool _isPause = false;
 
+    private void Awake()
+    {
+        _isPause = false;
+        EventAgregator.PlayerWin.AddListener(SeeWinTable);
+        EventAgregator.PlayerLoose.AddListener(SeeLooseTable);
+    }
+
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             _isPause = !_isPause;
         }
 
         if (_isPause == true)
         {
-            PauseInGame();
+            OpenMenuInGame();
         }
         else
         {
-            ReturnInGame();
+            CloseMenuInGame();
         }
+    }
+
+    private void OpenMenuInGame()
+    {
+        pauseMenuTable.SetActive(true);
+        PauseInGame();
+    }
+
+    private void CloseMenuInGame()
+    {
+        pauseMenuTable.SetActive(false);
+        ReturnInGame();
+
     }
 
     public void PauseInGame()
     {
-        pauseMenuTable.SetActive(true);
+        _isPause = true;
         Time.timeScale = 0f;
     }
 
     public void ReturnInGame()
     {
-        pauseMenuTable.SetActive(false);
+        _isPause = false;
         Time.timeScale = 1f;
+    }
+
+    public void SeeWinTable()
+    {
+        PauseInGame();
+        winTable.SetActive(true);
+    }
+
+    public void SeeLooseTable()
+    {
+        PauseInGame();
+        looseTable.SetActive(true);
     }
 }

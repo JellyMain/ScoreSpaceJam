@@ -8,8 +8,17 @@ public class Leaderboard : MonoBehaviour
 {
     private string leaderboardKey = "PlayerScoreLeaderboard";
 
+    public ResultItemManager itemManager;
 
+    private IEnumerator startCoroutineFetchWinScores;
+    private IEnumerator startCoroutineFetchLooseScores;
 
+    private int count = 0;
+    private void Awake()
+    {
+        EventAgregator.PlayerWin.AddListener(StartCoroutineFetchWinScores);
+        EventAgregator.PlayerLoose.AddListener(StartCoroutineFetchLooseScores);
+    }
 
     public IEnumerator SubmitScoreRoutine(int scoreToUpload)
     {
@@ -61,7 +70,147 @@ public class Leaderboard : MonoBehaviour
         yield return null;
     }
 
+    private void StartCoroutineFetchWinScores()
+    {
+        startCoroutineFetchWinScores = FetchWinScoresRoutine();
+        StartCoroutine(startCoroutineFetchWinScores);
+        //  FetchWinScoresRoutine();
+        //   StartCoroutine(FetchWinScoresRoutine());
+    }
 
+    private void StartCoroutineFetchLooseScores()
+    {
+        startCoroutineFetchLooseScores = FetchLooseScoresRoutine();
+        StartCoroutine(startCoroutineFetchLooseScores);
+        //
+        //startCoroutineFetchLooseScores = StartCoroutine(FetchLooseScoresRoutine());
+        //  FetchLooseScoresRoutine();
+        // StartCoroutine(FetchLooseScoresRoutine());
+    }
+
+    private void StopCoroutinesFetchLooseAndWinScores()
+    {
+        if (startCoroutineFetchLooseScores != null)
+        {
+            StopCoroutine(startCoroutineFetchLooseScores);
+            startCoroutineFetchLooseScores = null;
+        }
+
+        if (startCoroutineFetchWinScores != null)
+        {
+            StopCoroutine(startCoroutineFetchWinScores);
+            startCoroutineFetchWinScores = null;
+        }
+    }
+
+    public IEnumerator FetchWinScoresRoutine()
+    {
+        bool done = false;
+        yield return new WaitForSeconds(1f);
+
+        if (count < 1)
+        {
+            LootLockerSDKManager.GetScoreList(leaderboardKey, 20, (responce) =>
+            {
+                if (responce.success)
+                {
+                    string tempPlayerNames = "Names\n";
+                    string tempPlayerScores = "Scores\n";
+
+                    LootLockerLeaderboardMember[] members = responce.items;
+                    for (int i = 0; i < members.Length; i++)
+                    {
+                        tempPlayerNames += members[i].rank + ". ";
+                        if (members[i].player.name != "")
+                        {
+                            tempPlayerNames += members[i].player.name;
+                        }
+                        else
+                        {
+                            tempPlayerNames += members[i].player.id;
+                        }
+
+                        tempPlayerScores += members[i].score + "\n";
+                        tempPlayerNames += "\n";
+                        if (count >= 1)
+                        {
+                            return;
+                        }
+                        itemManager.CreateWinResultScoreItem(tempPlayerNames, tempPlayerScores);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Failed" + responce.Error);
+                    done = true;
+                }
+                count++;
+            });
+
+            yield return new WaitForSeconds(1f);
+
+            if (count >= 1)
+            {
+                StopCoroutinesFetchLooseAndWinScores();
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
+
+        yield return new WaitWhile(() => done == false);
+    }
+
+    public IEnumerator FetchLooseScoresRoutine()
+    {
+        bool done = false;
+        if (count < 1)
+        {
+            LootLockerSDKManager.GetScoreList(leaderboardKey, 20, (responce) =>
+            {
+                if (responce.success)
+                {
+                    string tempPlayerNames = "Names\n";
+                    string tempPlayerScores = "Scores\n";
+
+                    LootLockerLeaderboardMember[] members = responce.items;
+                    for (int i = 0; i < members.Length; i++)
+                    {
+                        tempPlayerNames += members[i].rank + ". ";
+                        if (members[i].player.name != "")
+                        {
+                            tempPlayerNames += members[i].player.name;
+                        }
+                        else
+                        {
+                            tempPlayerNames += members[i].player.id;
+                        }
+
+                        tempPlayerScores += members[i].score + "\n";
+                        tempPlayerNames += "\n";
+
+                        itemManager.CreateLooseResultScoreItem(tempPlayerNames, tempPlayerScores);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Failed" + responce.Error);
+                    done = true;
+                }
+                count++;
+            });
+
+            yield return new WaitForSeconds(1f);
+
+            if (count >= 1)
+            {
+                StopCoroutinesFetchLooseAndWinScores();
+            }
+        }
+        yield return new WaitForSeconds(1f);
+
+        yield return new WaitWhile(() => done == false);
+    }
 
     public void StartSettingName()
     {

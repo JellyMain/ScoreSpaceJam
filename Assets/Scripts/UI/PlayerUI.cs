@@ -8,9 +8,11 @@ public class PlayerUI : MonoBehaviour
     public TextMeshProUGUI score;
     public TextMeshProUGUI coin;
     public TextMeshProUGUI time;
-    public TextMeshProUGUI playerHP;
+    public TextMeshProUGUI timeForWave;
+   // public TextMeshProUGUI playerHP;
 
     private float timer;
+    public float timerForWave;
 
     void Start()
     {
@@ -25,6 +27,13 @@ public class PlayerUI : MonoBehaviour
     {
         timer += Time.deltaTime;
         time.text = timer.ToString();
+
+        timerForWave -= Time.deltaTime;
+        if (timerForWave <= 1)
+        {
+            EventAgregator.PlayerLoose.Invoke();
+        }
+        timeForWave.text = timerForWave.ToString();
     }
 
     private void UpdateScore()

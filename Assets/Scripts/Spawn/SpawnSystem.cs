@@ -75,6 +75,10 @@ public class SpawnSystem : MonoBehaviour
             yield return new WaitForSeconds(coldownWaveSpawnEnemy);
             createEnemiesCoroutine = StartCoroutine(StartWaveCreateEnemies());
         }
+        else
+        {
+            EventAgregator.PlayerWin.Invoke();
+        }
     }
 
     void Start()
@@ -85,10 +89,16 @@ public class SpawnSystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopCoroutine(createEnemiesCoroutine);
-        createEnemiesCoroutine = null;
+        if (createEnemiesCoroutine!= null)
+        {
+            StopCoroutine(createEnemiesCoroutine);
+            createEnemiesCoroutine = null;
+        }
 
-        StopCoroutine(createWaveEnemiesCoroutine);
-        createWaveEnemiesCoroutine = null;
+        if (createWaveEnemiesCoroutine != null)
+        {
+            StopCoroutine(createWaveEnemiesCoroutine);
+            createWaveEnemiesCoroutine = null;
+        }
     }
 }
